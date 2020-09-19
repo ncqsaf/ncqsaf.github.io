@@ -1,72 +1,658 @@
-
-<!-- saved from url=(0071)http://localhost:50676/Demo/Demo8/a.html?_ijt=ail12fqvhfr2bedmlce702fmc -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style>
-    .back {
-        position: fixed;
-        padding: 0;
-        margin: 0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #ffffff;
-        animation-name: backdiv;
-        animation-duration: 1s;
-        animation-iteration-count:infinite;
-    }
-
-    .heart {
-        position: absolute;
-        margin: auto;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: pink;
-        height: 50px;
-        width: 50px;
-        transform: rotate(-45deg);
-        animation-name: beat;
-        animation-duration: 1s;
-        animation-iteration-count:infinite;
-    }
-    .heart:after {
-        background-color: pink;
-        content: "";
-        border-radius: 50%;
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        top: 0px;
-        left: 25px;
-    }
-    .heart:before {
-        background-color: pink;
-        content: "";
-        border-radius: 50%;
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        top: -25px;
-        left: 0px;
-    }
-
-    @keyframes backdiv {
-        50% {
-            background: #ffe6f2;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>南昌求顺安防有限公司</title>
+    <style>
+        html {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-    }
 
-    @keyframes beat {
-        0% {
-            transform: scale(1) rotate(-45deg);
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
         }
-        50% {
-            transform: scale(0.6) rotate(-45deg);
-        }
-    }
 
-</style>
-</head><body><div class="back"></div>
-<div class="heart"></div>
-</body></html>
+        :root {
+            --blue: #00168c;
+            --gray: #848692;
+            --blue-gray: #edeff5;
+            --primary: #21d4fd;
+            --secondary: #b721ff;
+            --shadow: #6653f724;
+            --shadow-button: #6653f7a1;
+        }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+            color: var(--gray);
+            background-color: var(--blue-gray);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Montserrat", sans-serif;
+        }
+        #p1,
+        #p2{
+            padding:10px 10px;
+            width:800px;
+            font-size:20px;
+            font-weight:20px;
+        }
+        .container {
+            max-width: 1120px;
+            margin: auto;
+        }
+
+        .colorfull-button {
+            border: 0;
+            border-radius: 2rem;
+            background-image: var(--primary);
+            background-image: -webkit-linear-gradient(
+                    130deg,
+                    var(--primary),
+                    var(--secondary)
+            );
+            background-image: -moz-linear-gradient(
+                    130deg,
+                    var(--primary),
+                    var(--secondary)
+            );
+            background-image: -o-linear-gradient(
+                    130deg,
+                    var(--primary),
+                    var(--secondary)
+            );
+            background-image: linear-gradient(130deg, var(--primary), var(--secondary));
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: "Open Sans", sans-serif;
+            color: #fff;
+            padding: 1rem;
+            width: 170px;
+            text-align: center;
+            margin: auto;
+            display: block;
+            box-shadow: 0 10px 15px var(--shadow-button);
+            text-decoration: none;
+        }
+
+        /* <----- header -----> */
+
+        header {
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            position: fixed;
+            transition: all 0.5s ease-in-out;
+        }
+
+        header.sticky {
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+
+        header nav .navbar-brand {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1.75rem;
+        }
+
+        header.sticky nav .navbar-brand {
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul > li {
+            display: inline-block;
+            margin-right: 2rem;
+        }
+
+        header nav ul > li:last-child {
+            margin-right: 0;
+        }
+
+        header nav ul > li > a {
+            text-decoration: none;
+            color: #fff;
+            padding: 0.25rem 1rem;
+            font-weight: 600;
+        }
+
+        header.sticky nav ul > li > a {
+            color: #6e7898;
+        }
+
+        header.sticky nav ul > li > a.active,
+        header.sticky nav ul > li > a:hover {
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* <----- welcome section -----> */
+
+        #welcome-section {
+            background-color: var(--primary);
+            background-image: linear-gradient(160deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #fff;
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 100vh;
+        }
+
+        #welcome-section p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        #welcome-section h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 3.5rem;
+            text-align: center;
+            text-shadow: 0px 4px 4px var(--shadow-button);
+        }
+
+        #welcome-section .wave {
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* <----- general sections -----> */
+
+        section {
+            padding: 5rem 1rem;
+        }
+
+        section > h2 {
+            color: var(--blue);
+            text-align: center;
+            font-size: 2.25rem;
+            margin-top: 0;
+            margin-bottom: 4rem;
+        }
+
+        section > h2:after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 4px;
+            margin: 1rem auto;
+            background-image: linear-gradient(160deg, var(--primary), var(--secondary));
+        }
+
+        /* <----- services -----> */
+
+        #services > .container {
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        #services .container .card {
+            border-radius: 0.5rem;
+            background-color: #fff;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        #services .container .card .icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            background-image: linear-gradient(160deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        #services .container .card h3 {
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0;
+            color: var(--secondary);
+        }
+
+        #services .container .card p {
+            font-weight: 300;
+            line-height: normal;
+        }
+
+        /* <----- projects -----> */
+        #projects {
+            background-color: #fff;
+            position: relative;
+            margin: 5rem 0;
+        }
+
+        #projects > .container {
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .img-responsive {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid #dadada;
+        }
+
+        #projects .container .card {
+            text-align: center;
+        }
+
+        #projects .container .card a {
+            display: block;
+        }
+
+        #projects .container .card h3 {
+            font-weight: 600;
+        }
+
+        #projects .container .card h3 a {
+            text-decoration: none;
+            color: var(--blue);
+            transition: all 0.5s ease-in-out;
+        }
+
+        #projects .container .card:hover h3 a {
+        }
+
+        #projects .view-more-projects {
+            margin-top: 2rem;
+        }
+
+        #projects .view-more-projects .fas {
+            margin-left: 0.5rem;
+        }
+
+        #contact p {
+            max-width: 768px;
+            color: var(--blue);
+            font-weight: 300;
+            text-align: center;
+            margin: 0 auto 3rem auto;
+        }
+
+        #contact form {
+            max-width: 768px;
+            margin: auto;
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-template-areas:
+    "name email"
+    "subject subject"
+    "comment comment"
+    "submit submit";
+        }
+
+        #contact form .area-name {
+            grid-area: name;
+        }
+
+        #contact form .area-email {
+            grid-area: email;
+        }
+
+        #contact form .area-subject {
+            grid-area: subject;
+        }
+
+        #contact form .area-comment {
+            grid-area: comment;
+        }
+
+        #contact form .area-submit {
+            grid-area: submit;
+        }
+
+        #contact form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--blue);
+            font-weight: 300;
+        }
+
+        #contact form .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 0;
+            border-radius: 0.25rem;
+            outline: none;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        #contact form .button .fas {
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            position: relative;
+            padding-bottom: 150px;
+            background: var(--primary);
+            background-image: linear-gradient(130deg, var(--primary), var(--secondary));
+        }
+
+        footer h2 {
+            color: #fff;
+            text-align: center;
+            font-size: 2.25rem;
+            margin: 0;
+            z-index: 2;
+        }
+
+        footer h2:after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 4px;
+            margin: 1rem auto;
+            background-color: #fff;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin: 2rem 0;
+            z-index: 2;
+        }
+
+        footer ul li {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        footer ul li:not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        footer ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+
+        footer small {
+            display: block;
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+        }
+
+        @media (max-width: 499px) {
+            #services > .container,
+            #projects > .container {
+                grid-template-columns: repeat(1, 1fr);
+                max-width: 320px;
+            }
+
+            footer ul li {
+                display: block;
+                margin-right: 0 !important;
+            }
+        }
+
+        @media screen and (min-width: 500px) and (max-width: 767px) {
+            #services > .container,
+            #projects > .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            header nav {
+                flex-direction: column;
+            }
+            header nav ul {
+                margin-top: 6px;
+                margin-bottom: 6px;
+                text-align: center;
+            }
+            header nav ul > li {
+                margin-right: 0;
+            }
+            header nav ul > li > a {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+    <script>
+        window.onscroll = function() { _onScroll() };
+        var header = document.getElementById("header");
+
+        function _onScroll() {
+            console.log(window.pageYOffset);
+
+            if (window.pageYOffset >= header.offsetHeight) {
+                header.classList.add("sticky");
+            }
+            else {
+                header.classList.remove("sticky");
+            }
+        }
+      </script>
+</head>
+<body>
+<div class="page-wrapper">
+    <header id="header">
+        <div class="container">
+            <nav id="navbar">
+                <a href="" class="navbar-brand">公司简介</a>
+                <ul>
+                    <li><a class="active" href="#welcome-section">主页</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#projects">项目</a></li>
+                    <li><a href="#contact">支持</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="welcome-section">
+        <h1>江西南昌求顺安防有限公司</h1>
+        <div class="jianjie">
+            <p id="p1">公司简介：南昌求顺安防公司成立于2016年，现有专业技术人员10人，本科以上学历2人，工程师1人，助理工程师2人，从事弱电工程多年，有丰富的实战经验</p>
+            <p id="p2">公司主营：弱电布线、安防监控、数据机房、视频会议、门禁道闸、公共广播、电子围栏、桥架安装、多媒体教室、网络工程、路灯亮化、消防系统、宾馆电视电话、收银系统、电梯五方通话等</p>
+        </div>
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 1440 320">
+            <path fill="#edeff5" fill-opacity="1" d="M0,224L80,234.7C160,245,320,267,480,272C640,277,800,267,960,250.7C1120,235,1280,213,1360,202.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" /></svg>
+    </section>
+
+    <section id="services">
+        <h2>我们的服务</h2>
+        <div class="container">
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-laptop-code fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-mobile-alt fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-cogs fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-cart-arrow-down fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-chart-line fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-desktop fa-2x"></i>
+                </div>
+                <h3>预留服务</h3>
+                <p>预留</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>项目案例</h2>
+        <div class="container">
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+            <div class="card project-tile">
+                <a href="#" target="_blank">
+                    <img class="img-responsive" src="#" alt="未定">
+                </a>
+                <h3>
+                    <a href="#" target="_blank">预留项目</a>
+                </h3>
+            </div>
+        </div>
+        <a class="view-more-projects colorfull-button" href="#">查看更多 <i class="fas fa-chevron-right"></i></a>
+    </section>
+
+    <section id="contact">
+        <h2>留言</h2>
+        <p>请留下您宝贵的意见</p>
+        <div class="container">
+            <form action="mailto:363070816@qq.com" enctype="text/plain">
+                <div class="area-name">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="area-email">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="area-subject">
+                    <label for="subject">主题</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                <div class="area-comment">
+                    <label for="comment">内容</label>
+                    <textarea id="comment" rows="7" class="form-control" required></textarea>
+                </div>
+                <div class="area-submit">
+                    <button type="submit" class="button colorfull-button">提交 <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#edeff5" fill-opacity="1" d="M0,64L48,64C96,64,192,64,288,90.7C384,117,480,171,576,165.3C672,160,768,96,864,58.7C960,21,1056,11,1152,21.3C1248,32,1344,64,1392,80L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z" /></svg>
+        <div class="container">
+            <h2>联系我们</h2>
+            <ul>
+                <li>
+                    <a href="#" id="profile-link" target="_blank">
+                        <i class="fab fa-qq"></i> QQ:
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="fab fa-weixin"></i>微信:
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="fas fa-mobile-alt"></i> 电话:13970830985
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="fas fa-envelope"></i> 邮箱:
+                    </a>
+                </li>
+            </ul>
+            <small>&copy; 江西南昌求顺安防有限公司 </small>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
